@@ -20,5 +20,5 @@ def upload(request):
                  'api_secret':'171e8465-f548-401d-b63b-caf0dc28df5f',
                  'imagfile_data': encoded_string,
                  'original_filename': 'photo.jpg'}
-    r = requests.post('http://www.betafaceapi.com/service.svc/UploadNewImage_File', post_data)
+    r = requests.post('http://www.betafaceapi.com/service_json.svc/UploadNewImage_File', post_data)
     return r.content
