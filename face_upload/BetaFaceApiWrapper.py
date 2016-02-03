@@ -69,3 +69,10 @@ class BetaFaceApiWrapper:
                      'person_id': name_str}
         return requests.post(self.base_url() + 'SetPerson', post_data)
 
+    def get_request_result(self, recognize_id):
+        post_data = {'api_key': self.api_key(),
+                     'api_secret': self.api_secret(),
+                     'recognize_uid': recognize_id}
+        return requests.post(self.base_url() + 'GetRecognizeResult', post_data)
+
+ 
