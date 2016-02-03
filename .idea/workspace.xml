@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec914e49-91a0-469a-a845-4e7f73b0330a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SE329_Project_1.iml" afterPath="$PROJECT_DIR$/.idea/SE329_Project_1.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py" afterPath="$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/face_upload/models.py" afterPath="$PROJECT_DIR$/face_upload/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/se329_project_1/settings.py" afterPath="$PROJECT_DIR$/se329_project_1/settings.py" />
     </list>
     <ignored path="SE329_Project_1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BetaFaceApiWrapper.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BetaFaceApiWrapper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.8252427">
+              <caret line="69" column="69" selection-start-line="69" selection-start-column="69" selection-end-line="69" selection-end-column="69" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -80,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/se329_project_1/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.029126214">
-              <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="47" column="48" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -136,8 +129,8 @@
         <option value="$PROJECT_DIR$/se329_project_1/urls.py" />
         <option value="$PROJECT_DIR$/face_upload/views.py" />
         <option value="$PROJECT_DIR$/se329_project_1/settings.py" />
-        <option value="$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py" />
         <option value="$PROJECT_DIR$/face_upload/models.py" />
+        <option value="$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py" />
       </list>
     </option>
   </component>
@@ -871,21 +864,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py">
+    <entry file="file://$PROJECT_DIR$/se329_project_1/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+          <caret line="47" column="48" selection-start-line="47" selection-start-column="48" selection-end-line="47" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/se329_project_1/settings.py">
+    <entry file="file://$PROJECT_DIR$/face_upload/BetaFaceApiWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029126214">
-          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
-          <folding />
+        <state vertical-scroll-proportion="0.8252427">
+          <caret line="69" column="69" selection-start-line="69" selection-start-column="69" selection-end-line="69" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
