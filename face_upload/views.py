@@ -7,7 +7,7 @@ import os
 
 
 def index(request):
-    return upload(request)
+    return HttpResponse("Hello World   " + upload(request))
 
 def upload(request):
     __location__ = os.path.realpath(
@@ -21,4 +21,4 @@ def upload(request):
                  'imagfile_data': encoded_string,
                  'original_filename': 'photo.jpg'}
     r = requests.post('http://www.betafaceapi.com/service.svc/UploadNewImage_File', post_data)
-    return HttpResponse(r.content)
+    return r.content
