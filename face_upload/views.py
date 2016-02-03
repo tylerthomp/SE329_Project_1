@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import requests
-import os
+from BetaFaceApiWrapper import BetaFaceApiWrapper
+import json
+
 # Create your views here.
 
 
@@ -9,16 +10,10 @@ import os
 def index(request):
     return HttpResponse("Hello World\n\n   " + upload(request))
 
-def upload(request):
-    __location__ = os.path.realpath(
-    os.path.join(os.getcwd(), os.path.dirname(__file__))) + '/photo.jpg'
-    encoded_string = None
-    with open(__location__, "rb") as image_file:
-        encoded_string = image_file.read().encode("base64")
 
-    post_data = {'api_key': 'd45fd466-51e2-4701-8da8-04351c872236',
-                 'api_secret': '171e8465-f548-401d-b63b-caf0dc28df5f',
-                 'imagefile_data': encoded_string,
-                 'original_filename': 'photo.jpg'}
-    r = requests.post('http://www.betafaceapi.com/service_json.svc/UploadNewImage_File', post_data)
-    return r.content + "\n Base64 Encoded Photo:\n" + encoded_string
+def upload(request):
+    wrapper = BetaFaceApiWrapper()
+    r = wrapper.upload_image("photo.jpg")
+    json_ = json.loads(r.content)
+    r1 = wrapper.get_image_info(json_['img_uid'])
+    return r.content + " " + json_['img_uid'] + " " + r1.content
