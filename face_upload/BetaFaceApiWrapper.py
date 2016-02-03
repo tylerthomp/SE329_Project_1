@@ -1,6 +1,8 @@
 import requests
 import os
+import json
 
+from models import Photo
 
 class BetaFaceApiWrapper:
     def __init__(self):
@@ -17,14 +19,20 @@ class BetaFaceApiWrapper:
 
     """ Takes a photo path relative to /SE321_Project_1/face_upload directory and returns an HttpResponse object. """
     def upload_image(self, relative_photo_path):
-        location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) + "/" + relative_photo_path
+        project_dir = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        location = project_dir + "/" + relative_photo_path
         with open(location, "rb") as image_file:
             encoded_string = image_file.read().encode("base64")
         post_data = {'api_key': self.api_key(),
                      'api_secret': self.api_secret(),
                      'imagefile_data': encoded_string,
                      'original_filename': relative_photo_path}
-        return requests.post(self.base_url() + 'UploadNewImage_File', post_data)
+
+        r = requests.post(self.base_url() + 'UploadNewImage_File', post_data)
+        obj = json.loads(r.content)
+        p = Photo(uid=obj['img_uid'])
+        p.save()
+        return r
 
     """ Takes a uid returned in upload_image()'s response and gives you info about the photo. """
     def get_image_info(self, uid):
