@@ -2,7 +2,7 @@ import requests
 import os
 import json
 
-from models import Photo
+from models import Person
 
 class BetaFaceApiWrapper:
     def __init__(self):
@@ -29,45 +29,34 @@ class BetaFaceApiWrapper:
                      'original_filename': relative_photo_path}
 
         r = requests.post(self.base_url() + 'UploadNewImage_File', post_data)
-        obj = json.loads(r.content)
-        p = Photo(uid=obj['img_uid'])
-        p.save()
         return r
 
-    """ Takes a uid returned in upload_image()'s response and gives you info about the photo. """
-    def get_image_info(self, uid):
+    """ Takes a uid returned in upload_image()'s response and gives you info about the photo.
+        Also takes the name of the person and attaches it to their face ID. """
+    def get_image_info(self, uid, name):
         post_data = {'api_key': self.api_key(),
                      'api_secret': self.api_secret(),
                      'img_uid': uid}
-        return requests.post(self.base_url() + 'GetImageInfo', post_data)
+
+        r = requests.post(self.base_url() + 'GetImageInfo', post_data)
+        json_obj = json.loads(r.content)
+        p = Person(uid=json_obj['faces'][0]['uid'], name=name)
+        p.save()
+        return r
 
     def send_recognition_request(self, photo_uid, face_uids):
         uid_str = ''
-        for uid in face_uids:
-            uid_str += uid + ','
+        for index in range(len(face_uids)):
+            uid_str += face_uids[index]
+            if index < len(face_uids) - 1:
+                uid_str += ','
 
-        # Below code clears out extra comma at end of string
-        uid_str[-1] = ''
         post_data = {'api_key': self.api_key(),
                      'api_secret': self.api_secret(),
                      'targets': photo_uid,
                      'faces_uids': uid_str}
 
-        return requests.post(self.base_url() + 'RecognizeFaces')
-
-    def add_new_person(self, face_info, related_img_uid):
-        post_data = {'api_key': self.api_key(),
-                     'api_secret': self.api_secret(),
-                     'face_info': face_info,
-                     "img_uid": related_img_uid}
-        return requests.post(self.base_url() + 'FaceInfo_New', post_data)
-
-    def set_person_name(self, face_uid, name_str):
-        post_data = {'api_key': self.api_key(),
-                     'api_secret': self.api_secret(),
-                     'faces_uids': face_uid,
-                     'person_id': name_str}
-        return requests.post(self.base_url() + 'SetPerson', post_data)
+        return requests.post(self.base_url() + 'RecognizeFaces', post_data)
 
     def get_request_result(self, recognize_id):
         post_data = {'api_key': self.api_key(),
@@ -75,4 +64,21 @@ class BetaFaceApiWrapper:
                      'recognize_uid': recognize_id}
         return requests.post(self.base_url() + 'GetRecognizeResult', post_data)
 
- 
+    """ Don't use this. Only keeping because I worked on it a lot."""
+    def add_new_person(self, face_info, related_img_uid):
+        post_data = {'api_key': self.api_key(),
+                     'api_secret': self.api_secret(),
+                     'faceinfo': face_info,
+                     "img_uid": related_img_uid}
+        headers = {'content-type': 'application/json'}
+        json_encoder = json.JSONEncoder()
+
+        return requests.post(self.base_url() + 'FaceInfo_New', data=json_encoder.encode(post_data), headers=headers)
+
+    """ Don't use this. Only keeping because I worked on it a lot."""
+    def set_person_name(self, face_uid, name_str):
+        post_data = {'api_key': self.api_key(),
+                     'api_secret': self.api_secret(),
+                     'faces_uids': face_uid,
+                     'person_id': name_str}
+        return requests.post(self.base_url() + 'SetPerson', post_data)
