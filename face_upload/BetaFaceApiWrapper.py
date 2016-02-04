@@ -44,16 +44,24 @@ class BetaFaceApiWrapper:
         p.save()
         return r
 
-    def send_recognition_request(self, photo_uid, face_uids):
+    """ Sends a request to match faces described in face_uids to targets in target_uids
+        both uid params MUST be arrays of strings, not just strings. """
+    def send_recognition_request(self, target_uids, face_uids):
         uid_str = ''
         for index in range(len(face_uids)):
             uid_str += face_uids[index]
             if index < len(face_uids) - 1:
                 uid_str += ','
 
+        t_uid_str = ''
+        for index in range(len(target_uids)):
+            t_uid_str += target_uids[index]
+            if index < len(face_uids) - 1:
+                t_uid_str += ','
+
         post_data = {'api_key': self.api_key(),
                      'api_secret': self.api_secret(),
-                     'targets': photo_uid,
+                     'targets': target_uids,
                      'faces_uids': uid_str}
 
         return requests.post(self.base_url() + 'RecognizeFaces', post_data)

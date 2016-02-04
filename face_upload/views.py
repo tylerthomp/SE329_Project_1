@@ -39,7 +39,7 @@ def upload(request):
     response_str += encoder.encode(json2_['faces'][0])
     response_str += '<br><br>'
     # json2_['faces'][0]['uid'] gets the unique "face" ID. Use this for all face recognition functions
-    r2 = wrapper.send_recognition_request(json2_['faces'][0]['uid'], [comp_face_id])
+    r2 = wrapper.send_recognition_request([json2_['faces'][0]['uid']], [comp_face_id])
     response_str += 'Add Person Response:<br>'
     response_str += r2.content
     json3_ = json.loads(r2.content)
